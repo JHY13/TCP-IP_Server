@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE configuration  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">        
+				<property name="driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/> 
+				<property name="url" value="jdbc:sqlserver://dev.newlecture.com:1433;databaseName=newlecture3" />
+				<property name="username" value="jsp" />
+				<property name="password" value="dclass" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="com/jspprj/web/dao/mybatis/NoticeMapper.xml" />
+		<mapper resource="com/jspprj/web/dao/mybatis/NoticeFileMapper.xml" />
+	</mappers>
+</configuration>
