@@ -1,44 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jspprj.web.dao.NoticeDao">
-   <select id="get" resultType="com.jspprj.web.entities.Notice">
+<mapper namespace="com.jspprj.web.dao.ImageDao">
+   
+   
+   <select id="get" resultType="com.jspprj.web.entities.Image">
       SELECT * FROM NOTICES WHERE CODE=#{code}
    </select>
-   <select id="getList" resultType="com.jspprj.web.model.NoticeModel">
+   <select id="getList" resultType="com.jspprj.web.entities.Image">
       
             
-   SELECT * FROM(
-   SELECT
-   ROW_NUMBER() OVER(ORDER BY REGDATE DESC) NUM,
-   NOTICES_VIEW.*FROM NOTICES_VIEW
-   WHERE ${param2} LIKE '%${param3}%'
-   )N
-   WHERE NUM BETWEEN 1+(#{param1}-1)*10 AND #{param1}*10;
-
+  SELECT * FROM 
+		(
+			SELECT 
+				ROW_NUMBER() OVER (ORDER BY REGDATE DESC) NUM,
+				NOTICES.*
+			FROM NOTICES
+			WHERE ${param2} LIKE '%${param3}%'
+		) N
+		WHERE NUM BETWEEN 1+(#{param1}-1)*10 AND #{param1}*10	
+		
    </select>
-   <update id="update" parameterType="com.jspprj.web.entities.Notice">
+   
+   <update id="update" parameterType="com.jspprj.web.entities.Image">
       UPDATE NOTICES
-      SET TITLE=#{title}, CONTENT=#{content}
+      SET TITLE=#{title}, CONTENT=#{content}, DELIVERY_NUMBER=#{delivery_number}, ADDRESS=#{address}
       WHERE CODE=#{code}
    </update>
    
    <delete id="delete">
       DELETE NOTICES WHERE CODE=#{code}
    </delete>
+   
    <insert id="insert">
       <selectKey order="BEFORE" keyProperty="code" resultType="String">
       SELECT ISNULL(MAX(CAST(CODE AS INT)),0)+1 AS CODE FROM NOTICES
 
       </selectKey>
-      INSERT INTO NOTICES(CODE,TITLE,WRITER,CONTENT)
-      VALUES(#{code},#{title},#{writer},#{content})
+      INSERT INTO NOTICES(CODE,TITLE,DELIVERY_NUMBER,ITEM,NAME,PHONE,ADDRESS,CONTENT,REGDATE)
+      VALUES(#{code},#{title},#{delivery_number},#{item},#{name},#{phone},#{address},#{content},GetDate())
    </insert>
    <select id="getCount" resultType="Integer">
    SELECT  COUNT(*)  COUNT FROM
    (
       SELECT
       ROW_NUMBER() OVER(ORDER BY REGDATE DESC) NUM,
-      NOTICES_VIEW.*FROM NOTICES_VIEW
+      NOTICES.* 
+      FROM NOTICES
       WHERE ${param1} LIKE '%${param2}%'
    )N    
    </select>
@@ -52,11 +59,11 @@
    
    <!-- 준모 오빠가 주신 코드 16.10.31  -->
    
-    <select id="getPrev" resultType="com.jspprj.web.entities.Notice">
+    <select id="getPrev" resultType="com.jspprj.web.entities.Image">
    select top 1 * from notices where code &gt; CAST(#{code} as INT) order by regdate asc
    </select>
    
-   <select id="getNext" resultType="com.jspprj.web.entities.Notice">
+   <select id="getNext" resultType="com.jspprj.web.entities.Image">
    select top 1 * from notices where code &lt; CAST(#{code} as INT) order by regdate desc
    </select>
    <update id="hitUp">

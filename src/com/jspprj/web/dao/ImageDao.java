@@ -6,7 +6,7 @@ import java.util.List;
 import com.jspprj.web.entities.Image;
 
 public interface ImageDao {
-	Image get(String code) ;//데이터베이스에 있는 데이터를 객체화시켜 받아 사용할 것이기 때문에 
+	Image get(String code) ;
 	List<Image> getList(int page, String field, String query) ;
 	List<Image> getList(int page);
 	List<Image> getList() ;

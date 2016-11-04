@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jspprj.web.dao.ImageDao;
-import com.jspprj.web.dao.mybatis.ImageNoticeDao;
+import com.jspprj.web.dao.mybatis.MyBatisImageDao;
 import com.jspprj.web.entities.Image;
 
 @WebServlet("/customer/image")
@@ -39,20 +39,18 @@ public class ImageController extends HttpServlet {
 		if(q != null)
 			query=q;
 		
-		ImageDao noticeDao = new ImageNoticeDao();
-		//noticeDao.getList(page, field, query);
-		List<Image> list = noticeDao.getList(page, field, query);
-		int count= noticeDao.getCount(field, query);
+		ImageDao imageDao = new MyBatisImageDao();
+		//imageDao.getList(page, field, query);
+		List<Image> list = imageDao.getList(page, field, query);
+		int count= imageDao.getCount(field, query);
 
 		request.setAttribute("list", list);
 		request.setAttribute("count", count);
-			
-		//1.그냥부르기: 니가 새로해 
+		
 		//response.sendRedirect("notice.jsp");
 
-		//2.자원을 공유하면서 부르기: 일을 이서서 계속
-		request.getRequestDispatcher("/WEB-INF/views/customer/notice.jsp").forward(request,response);
-		//Dispatcher 누군가를 호출하기 위한도구 forward 
+		request.getRequestDispatcher("/WEB-INF/views/customer/image.jsp").forward(request,response);
+		//Dispatcher �늻援곌�瑜� �샇異쒗븯湲� �쐞�븳�룄援� forward 
 	}
 
 }

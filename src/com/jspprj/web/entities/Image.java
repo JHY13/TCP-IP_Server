@@ -5,11 +5,13 @@ import java.util.Date;
 public class Image {
 	private String code;
 	private String title;
-	private String writer;
+	private String name;
 	private String content;
-	private Date regDate;
-	private int hit;
-
+	private Date regdate;
+	private String delivery_number;
+	private String phone;
+	private String address;
+	private String item;
 	
 
 	public String getCode() {
@@ -28,13 +30,6 @@ public class Image {
 		this.title = title;
 	}
 
-	public String getWriter() {
-		return writer;
-	}
-
-	public void setWriter(String writer) {
-		this.writer = writer;
-	}
 
 	public String getContent() {
 		return content;
@@ -44,20 +39,52 @@ public class Image {
 		this.content = content;
 	}
 
-	public Date getRegdate() {
-		return regDate;
+	public Date getregdate() {
+		return regdate;
 	}
 
-	public void setRegdate(Date regDate) {
-		this.regDate = regDate;
+	public void setregdate(Date regdate) {
+		this.regdate = regdate;
 	}
 
-	public int getHit() {
-		return hit;
+	public String getDelivery_number() {
+		return delivery_number;
 	}
 
-	public void setHit(int hit) {
-		this.hit = hit;
+	public void setDelivery_number(String delivery_number) {
+		this.delivery_number = delivery_number;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getItem() {
+		return item;
+	}
+
+	public void setItem(String item) {
+		this.item = item;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

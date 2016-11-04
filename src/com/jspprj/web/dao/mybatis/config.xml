@@ -6,14 +6,13 @@
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">        
 				<property name="driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/> 
-				<property name="url" value="jdbc:sqlserver://dev.newlecture.com:1433;databaseName=newlecture3" />
-				<property name="username" value="jsp" />
-				<property name="password" value="dclass" />
+				<property name="url" value="jdbc:sqlserver://192.168.0.10:1433;databaseName=project" />
+				<property name="username" value="sa" />
+				<property name="password" value="40184019" />
 			</dataSource>
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="com/jspprj/web/dao/mybatis/NoticeMapper.xml" />
-		<mapper resource="com/jspprj/web/dao/mybatis/NoticeFileMapper.xml" />
+		<mapper resource="com/jspprj/web/dao/mybatis/ImageMapper.xml" />
 	</mappers>
 </configuration>
